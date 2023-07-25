@@ -174,6 +174,9 @@ public class App {
     }
 
     public Boolean isNumeric(String s) {
+        /*
+            Метод проверяет символы в строке.
+         */
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i);
             if (c >= '0' && c <= '9') {
