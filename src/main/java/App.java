@@ -202,16 +202,19 @@ public class App {
             3. Полученный массив записывается в файл.
          */
         int[] tempArray = new int[numList.size()];
-        if (commandList.get(1).equals("-a")) {
-            for (int i = 0; i < numList.size(); i++) {
-                tempArray[i] = numList.get(i);
-            }
-        } else {
-            for (int i = numList.size() - 1; i >= 0; i--) {
-                tempArray[i] = numList.get(i);
-            }
+
+        for (int i = 0; i < numList.size(); i++) {
+            tempArray[i] = numList.get(i);
         }
-        BubbleSort(tempArray);
+        bubbleSort(tempArray);
+
+        if (commandList.get(1).equals("-d")) {
+            int[] reversedArray = new int[tempArray.length];
+            for (int i = 0; i < tempArray.length; i++) {
+                reversedArray[i] = tempArray[tempArray.length - 1 - i];
+            }
+            tempArray = reversedArray;
+        }
         String fileName = fileList.get(0);
         System.out.println(Arrays.toString(tempArray));
         FileWriter writer = new FileWriter(fileName);
@@ -221,7 +224,7 @@ public class App {
         writer.close();
     }
 
-    public void BubbleSort(int[] myArray) {
+    public void bubbleSort(int[] myArray) {
         /*
             Пузырьковая сортировка.
          */

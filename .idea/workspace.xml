@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #1 (25.07.2023):&#10;created App for CFT">
-      <change afterPath="$PROJECT_DIR$/Exercise_CFT.txt" afterDir="false" />
+    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #2 (25.07.2023):&#10;changed file_path">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
@@ -88,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690269895274</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Commit #2 (25.07.2023):&#10;changed file_path">
+      <created>1690270573495</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1690270573495</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +110,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit #1 (25.07.2023):&#10;created App for CFT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #1 (25.07.2023):&#10;created App for CFT" />
+    <MESSAGE value="Commit #2 (25.07.2023):&#10;changed file_path" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #2 (25.07.2023):&#10;changed file_path" />
   </component>
 </project>
