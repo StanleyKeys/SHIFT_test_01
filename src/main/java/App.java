@@ -65,7 +65,7 @@ public class App {
             4. Проверяет ввел ли пользователь Выходной и Входные файлы.
             5. Проверяет наличие параметра для типа данных.
             6. Заполняет необходимый список и сортирует его.
-            7. Записывает список(или массив) в выходной файл.
+            7. Записывает список в выходной файл.
          */
         ArrayList<String> strList;
         ArrayList<Integer> numList;
@@ -226,7 +226,7 @@ public class App {
             Пузырьковая сортировка.
          */
         int n = myArray.length;
-        int temp = 0;
+        int temp;
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
                 if (myArray[j - 1] > myArray[j]) {
