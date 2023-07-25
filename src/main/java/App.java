@@ -112,10 +112,7 @@ public class App {
                 saveToFile(strList, fileList.get(0));
                 System.out.println(strList);
             }
-
         }
-        System.out.println(commandList);
-        System.out.println(fileList);
     }
 
     public ArrayList<Integer> fillNumList(ArrayList<String> fileList) throws IOException {
@@ -128,8 +125,8 @@ public class App {
          */
         ArrayList<Integer> numList = new ArrayList<>();
         for (int i = 1; i < fileList.size(); i++) {
-            // String filePath = fileList.get(i);
-            String filePath = String.format("T:\\Important\\Projects\\IdeaProjects\\SHIFT_test_01\\%s", fileList.get(i));
+            String filePath = fileList.get(i);
+            //String filePath = String.format("T:\\Important\\Projects\\IdeaProjects\\SHIFT_test_01\\%s", fileList.get(i));
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
@@ -156,8 +153,8 @@ public class App {
          */
         ArrayList<String> strList = new ArrayList<>();
         for (int i = 1; i < fileList.size(); i++) {
-            // String filePath = fileList.get(i);
-            String filePath = String.format("T:\\Important\\Projects\\IdeaProjects\\SHIFT_test_01\\%s", fileList.get(i));
+            String filePath = fileList.get(i);
+            // String filePath = String.format("T:\\Important\\Projects\\IdeaProjects\\SHIFT_test_01\\%s", fileList.get(i));
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
