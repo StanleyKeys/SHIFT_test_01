@@ -50,7 +50,7 @@ public class MergeSortApp {
         return "-a";
     }
 
-    public void chooseCommand(String[] args) throws IOException {
+    private void chooseCommand(String[] args) throws IOException {
         /*
             Основной метод, который:
             1. Создает списки для команд, и файлов.
@@ -84,7 +84,7 @@ public class MergeSortApp {
         }
     }
 
-    public void fillList(String sortCommand, ArrayList<String> fileList) throws IOException {
+    private void fillList(String sortCommand, ArrayList<String> fileList) throws IOException {
 
         ArrayList<String> strList = new ArrayList<>();
 
@@ -105,7 +105,7 @@ public class MergeSortApp {
             System.out.printf("Used heap memory: %.2f GB%n", usedMemory);
 
             /*
-                Если используемая память превышает допустимую (usedMemory), то программа прервыает чтение файлов,
+                Если используемая память превышает допустимую (usedMemory), то программа прерывает чтение файлов,
                 затем полученный список сортирует и записывает в Выходной файл.
                 Освобождает память и снова читает файлы.
             */
@@ -135,7 +135,12 @@ public class MergeSortApp {
     }
 
 
-    public static int[] mergeSort(ArrayList<String> strList, String sortCommand) {
+    private int[] mergeSort(ArrayList<String> strList, String sortCommand) {
+        /*
+            1. Получаем список, создаем массив и заполняем его.
+            2. Проверяем команду сортировки.
+            3. Сортируем слиянием.
+        */
         int[] array = new int[strList.size()];
         for (int i = 0; i < array.length; i++) {
             array[i] = Integer.parseInt(strList.get(i));
@@ -160,13 +165,14 @@ public class MergeSortApp {
             }
             return currentSrc;
         } else {
+
             Integer[] integerArray = IntStream.of(array).boxed().toArray(Integer[]::new);
             Arrays.sort(integerArray, Collections.reverseOrder());
             return Arrays.stream(integerArray).mapToInt(i -> i).toArray();
         }
     }
 
-    private static void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
+    private void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
                               int destStart, int size) {
         int index1 = src1Start;
         int index2 = src2Start;

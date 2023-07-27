@@ -107,7 +107,7 @@ public class AnotherApp {
             System.out.printf("Used heap memory: %.2f GB%n", usedMemory);
 
             /*
-                Если используемая память превышает допустимую (usedMemory), то программа прервыает чтение файлов,
+                Если используемая память превышает допустимую (usedMemory), то программа прерывает чтение файлов,
                 затем полученный список сортирует и записывает в Выходной файл.
                 Освобождает память и снова читает файлы.
             */
@@ -178,9 +178,10 @@ public class AnotherApp {
 
     public void fillFiles() throws IOException {
         /*
-            Метод создания и заполения файлов.
+            Метод создания и заполения файлов БОЛЬШИМ количеством данных (чисел).
+            Необходим для работы с оперативной памятью (проверки нагрузки).
         */
-        FileWriter writer = new FileWriter("inn4.txt", true);
+        FileWriter writer = new FileWriter("in1.txt", true);
         Random r = new Random();
         System.out.println("filling the file");
         for (int i = 0; i < 10000000; i++) {
