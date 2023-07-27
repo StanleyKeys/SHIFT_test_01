@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #5 (27.07.2023):&#10;created MergeSortApp">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AnotherApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AnotherApp.java" afterDir="false" />
+    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #6 (27.07.2023):&#10;hot Fix">
       <change beforePath="$PROJECT_DIR$/src/main/java/MergeSortApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MergeSortApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690446869167</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Commit #6 (27.07.2023):&#10;hot Fix">
+      <created>1690452492570</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1690452492570</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,6 +163,7 @@
     <MESSAGE value="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method" />
     <MESSAGE value="Commit #4 (27.07.2023):&#10;reforged App&#10;Created AnotherApp" />
     <MESSAGE value="Commit #5 (27.07.2023):&#10;created MergeSortApp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #5 (27.07.2023):&#10;created MergeSortApp" />
+    <MESSAGE value="Commit #6 (27.07.2023):&#10;hot Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #6 (27.07.2023):&#10;hot Fix" />
   </component>
 </project>

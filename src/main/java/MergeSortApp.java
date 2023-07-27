@@ -95,10 +95,10 @@ public class MergeSortApp {
                 (double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824);
 
         // Проверяем допустимое кол-во памяти, затем используем только часть его.
-        double maxUseMemory = Math.ceil((((double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824) / (fileList.size() - 1)) * 10);
-        maxUseMemory = maxUseMemory / 10 - 0.5;
+        double usedMemoryLimit = Math.ceil((((double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824) / (fileList.size() - 1)) * 10);
+        usedMemoryLimit = usedMemoryLimit / 10 - 0.5;
 
-        System.out.println(maxUseMemory);
+        System.out.println(usedMemoryLimit);
 
         for (int i = 1; i < fileList.size(); i++) {
             BufferedReader reader = new BufferedReader(new FileReader(fileList.get(i)));
@@ -111,8 +111,8 @@ public class MergeSortApp {
                 затем полученный список сортирует и записывает в Выходной файл.
                 Освобождает память и снова читает файлы.
             */
-            if (usedMemory >= maxUseMemory) {
-                System.out.printf("Used Memory is higher than %,.1f GB \n", maxUseMemory);
+            if (usedMemory >= usedMemoryLimit) {
+                System.out.printf("Used Memory is higher than %,.1f GB \n", usedMemoryLimit);
                 int[] array = mergeSort(strList, sortCommand);
                 saveToFile(array, fileList.get(0));
                 strList.clear();
