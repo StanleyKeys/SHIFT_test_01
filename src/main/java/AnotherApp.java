@@ -53,7 +53,7 @@ public class AnotherApp {
             1. Создает списки для команд, и файлов.
             2. Заполняет commandList параметрами полученными от пользователя.
             3. Заполняет fileList названиями файлов.
-            4. Проверяет ввел ли пользователь Выходной и Входные файлы.
+            4. Проверяет, ввел ли пользователь Выходной и Входные файлы.
             5. Проверяет наличие параметра для типа данных.
          */
 
@@ -77,6 +77,8 @@ public class AnotherApp {
                 System.out.println("Вы не ввели параметр для типа данных. \nДопустимые: -i Integer, -s String");
             } else if (commandList.get(0).equals("-i")) {
                 fillList(fileList, commandList.get(1));
+            } else if (commandList.get(0).equals("-s")) {
+                System.out.println("Sorry. This feature in development");
             }
         }
     }
@@ -95,6 +97,7 @@ public class AnotherApp {
                 (double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824);
 
         // Проверяем допустимое кол-во памяти, затем используем только часть его.
+        // Берем прям очень маленькое значение, чтоб проверить работоспособность.
         double maxUseMemory = Math.ceil((((double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824) / (fileList.size() - 1)) * 10);
         maxUseMemory = maxUseMemory / 10 - 0.5;
 
@@ -142,8 +145,8 @@ public class AnotherApp {
         */
         System.out.println("Converting String to Integer");
         ArrayList<Integer> numList = new ArrayList<>();
-        for (int i = 0; i < strList.size(); i++) {
-            int temp = Integer.parseInt(strList.get(i));
+        for (String s : strList) {
+            int temp = Integer.parseInt(s);
             numList.add(temp);
         }
         if (command.equals("-a")) {
@@ -198,19 +201,19 @@ public class AnotherApp {
         */
         MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
 
-        System.out.println(String.format("Initial memory: %.2f GB",
-                (double) memoryMXBean.getHeapMemoryUsage().getInit() / 1073741824));
+        System.out.printf("Initial memory: %.2f GB%n",
+                (double) memoryMXBean.getHeapMemoryUsage().getInit() / 1073741824);
 
-        System.out.println(String.format("Used heap memory: %.2f GB",
+        System.out.printf("Used heap memory: %.2f GB%n",
 
-                (double) memoryMXBean.getHeapMemoryUsage().getUsed() / 1073741824));
+                (double) memoryMXBean.getHeapMemoryUsage().getUsed() / 1073741824);
 
-        System.out.println(String.format("Max heap memory: %.2f GB",
+        System.out.printf("Max heap memory: %.2f GB%n",
 
-                (double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824));
+                (double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824);
 
-        System.out.println(String.format("Committed memory: %.2f GB",
+        System.out.printf("Committed memory: %.2f GB%n",
 
-                (double) memoryMXBean.getHeapMemoryUsage().getCommitted() / 1073741824));
+                (double) memoryMXBean.getHeapMemoryUsage().getCommitted() / 1073741824);
     }
 }

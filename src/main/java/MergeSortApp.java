@@ -7,7 +7,7 @@ import java.lang.management.MemoryMXBean;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.IntStream;
+
 
 public class MergeSortApp {
     public static void main(String[] args) throws IOException {
@@ -56,7 +56,7 @@ public class MergeSortApp {
             1. Создает списки для команд, и файлов.
             2. Заполняет commandList параметрами полученными от пользователя.
             3. Заполняет fileList названиями файлов.
-            4. Проверяет ввел ли пользователь Выходной и Входные файлы.
+            4. Проверяет, ввел ли пользователь Выходной и Входные файлы.
             5. Проверяет наличие параметра для типа данных.
          */
 
@@ -80,6 +80,8 @@ public class MergeSortApp {
                 System.out.println("Вы не ввели параметр для типа данных. \nДопустимые: -i Integer, -s String");
             } else if (commandList.get(0).equals("-i")) {
                 fillList(commandList.get(1), fileList);
+            } else if (commandList.get(0).equals("-s")) {
+                System.out.println("Sorry. This feature in development");
             }
         }
     }
@@ -146,55 +148,58 @@ public class MergeSortApp {
             array[i] = Integer.parseInt(strList.get(i));
         }
         if (sortCommand.equals("-a")) {
-            int[] tmp;
-            int[] currentSrc = array;
-            int[] currentDest = new int[array.length];
+            int[] temp;
+            int[] sourceArray = array;
+            int[] destArray = new int[array.length];
 
             int size = 1;
             while (size < array.length) {
                 for (int i = 0; i < array.length; i += 2 * size) {
-                    merge(currentSrc, i, currentSrc, i + size, currentDest, i, size);
+                    merge(sourceArray, i, sourceArray, i + size, destArray, i, size);
                 }
 
-                tmp = currentSrc;
-                currentSrc = currentDest;
-                currentDest = tmp;
+                temp = sourceArray;
+                sourceArray = destArray;
+                destArray = temp;
 
                 size = size * 2;
 
             }
-            return currentSrc;
+            return sourceArray;
         } else {
-
-            Integer[] integerArray = IntStream.of(array).boxed().toArray(Integer[]::new);
-            Arrays.sort(integerArray, Collections.reverseOrder());
-            return Arrays.stream(integerArray).mapToInt(i -> i).toArray();
+/*
+              Integer[] integerArray = IntStream.of(array).boxed().toArray(Integer[]::new);
+              Arrays.sort(integerArray, Collections.reverseOrder());
+              return Arrays.stream(integerArray).mapToInt(i -> i).toArray();
+*/
+            return Arrays.stream(array).boxed().sorted(Collections.reverseOrder()).mapToInt(Integer::intValue)
+                    .toArray();
         }
     }
 
-    private void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
-                              int destStart, int size) {
-        int index1 = src1Start;
-        int index2 = src2Start;
+    private void merge(int[] sourceArray1, int source1Start, int[] sourceArray2,
+                       int source2Start, int[] destArray, int destStart, int size) {
+        int index1 = source1Start;
+        int index2 = source2Start;
 
-        int src1End = Math.min(src1Start + size, src1.length);
-        int src2End = Math.min(src2Start + size, src2.length);
+        int source1End = Math.min(source1Start + size, sourceArray1.length);
+        int source2End = Math.min(source2Start + size, sourceArray2.length);
 
-        if (src1Start + size > src1.length) {
-            for (int i = src1Start; i < src1End; i++) {
-                dest[i] = src1[i];
+        if (source1Start + size > sourceArray1.length) {
+            for (int i = source1Start; i < source1End; i++) {
+                destArray[i] = sourceArray1[i];
             }
             return;
         }
 
-        int iterationCount = src1End - src1Start + src2End - src2Start;
+        int iterationCount = source1End - source1Start + source2End - source2Start;
 
         for (int i = destStart; i < destStart + iterationCount; i++) {
-            if (index1 < src1End && (index2 >= src2End || src1[index1] < src2[index2])) {
-                dest[i] = src1[index1];
+            if (index1 < source1End && (index2 >= source2End || sourceArray1[index1] < sourceArray2[index2])) {
+                destArray[i] = sourceArray1[index1];
                 index1++;
             } else {
-                dest[i] = src2[index2];
+                destArray[i] = sourceArray2[index2];
                 index2++;
             }
         }
@@ -202,8 +207,8 @@ public class MergeSortApp {
 
     public void saveToFile(int[] array, String outFile) throws IOException {
         FileWriter writer = new FileWriter(outFile, true);
-        for (int i = 0; i < array.length; i++) {
-            writer.write(array[i] + System.getProperty("line.separator"));
+        for (int value : array) {
+            writer.write(value + System.getProperty("line.separator"));
         }
         writer.close();
         System.out.println("successfully saved the out file");

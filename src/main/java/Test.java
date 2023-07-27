@@ -1,65 +1,69 @@
-import java.io.*;
+
 import java.util.Arrays;
 
 
 public class Test {
     public static void main(String[] args) {
-        int[] a1 = new int[]{21, 23355345, 24, 40, 75, 76, 78, 77, 900, 2100, 2200, 2300, 2400, 2500};
+        int[] a1 = new int[]{21, 23355345, 24, 40, 75, 76, 78, 77, 900, 8, 123123, 2100, 2200, 2300, 15, 2400, 71, 2500};
         int[] a2 = new int[]{10, 11, 41, 50, 65, 86, 98, 101, 190, 1100, 1200, 3000, 5000};
-        // mergeArrays(a1, a2);
 
+        Test t = new Test();
+        t.mergeSort(a1, 0, a1.length - 1);
         System.out.println(Arrays.toString(a1));
+
     }
 
-    public static int[] mergeSort(int[] array) {
-        int[] tmp;
-        int[] currentSrc = array;
-        int[] currentDest = new int[array.length];
-
-        int size = 1;
-        while (size < array.length) {
-            for (int i = 0; i < array.length; i += 2 * size) {
-                merge(currentSrc, i, currentSrc, i + size, currentDest, i, size);
-            }
-
-            tmp = currentSrc;
-            currentSrc = currentDest;
-            currentDest = tmp;
-
-            size = size * 2;
-
-            // System.out.println(Arrays.toString(currentSrc));
-        }
-        return currentSrc;
+    public void mergeSort(int[] array, int left, int right) {
+        if (right <= left) return;
+        int mid = (left + right) / 2;
+        mergeSort(array, left, mid);
+        mergeSort(array, mid + 1, right);
+        merge(array, left, mid, right);
     }
 
-    private static void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
-                              int destStart, int size) {
-        int index1 = src1Start;
-        int index2 = src2Start;
+    void merge(int[] array, int left, int mid, int right) {
+        // вычисляем длину
+        int lengthLeft = mid - left + 1;
+        int lengthRight = right - mid;
 
-        int src1End = Math.min(src1Start + size, src1.length);
-        int src2End = Math.min(src2Start + size, src2.length);
+        // создаем временные подмассивы
+        int[] leftArray = new int[lengthLeft];
+        int[] rightArray = new int[lengthRight];
 
-        if (src1Start + size > src1.length) {
-            for (int i = src1Start; i < src1End; i++) {
-                dest[i] = src1[i];
+        // копируем отсортированные массивы во временные
+        System.arraycopy(array, left, leftArray, 0, lengthLeft);
+        for (int i = 0; i < lengthRight; i++)
+            rightArray[i] = array[mid + i + 1];
+
+        // итераторы содержат текущий индекс временного подмассива
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        // копируем из leftArray и rightArray обратно в массив
+        for (int i = left; i < right + 1; i++) {
+            // если остаются нескопированные элементы в R и L, копируем минимальный
+            if (leftIndex < lengthLeft && rightIndex < lengthRight) {
+                if (leftArray[leftIndex] < rightArray[rightIndex]) {
+                    array[i] = leftArray[leftIndex];
+                    leftIndex++;
+                } else {
+                    array[i] = rightArray[rightIndex];
+                    rightIndex++;
+                }
             }
-            return;
-        }
-
-        int iterationCount = src1End - src1Start + src2End - src2Start;
-
-        for (int i = destStart; i < destStart + iterationCount; i++) {
-            if (index1 < src1End && (index2 >= src2End || src1[index1] < src2[index2])) {
-                dest[i] = src1[index1];
-                index1++;
-            } else {
-                dest[i] = src2[index2];
-                index2++;
+            // если все элементы были скопированы из rightArray, скопировать остальные из leftArray
+            else if (leftIndex < lengthLeft) {
+                array[i] = leftArray[leftIndex];
+                leftIndex++;
+            }
+            // если все элементы были скопированы из leftArray, скопировать остальные из rightArray
+            else if (rightIndex < lengthRight) {
+                array[i] = rightArray[rightIndex];
+                rightIndex++;
             }
         }
     }
+
 
     public static void mergeArrays(int[] array1, int[] array2) {
 
