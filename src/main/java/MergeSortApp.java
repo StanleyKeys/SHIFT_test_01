@@ -4,18 +4,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.IntStream;
 
-public class AnotherApp {
+public class MergeSortApp {
     public static void main(String[] args) throws IOException {
-        AnotherApp anotherApp = new AnotherApp();
+        MergeSortApp msa = new MergeSortApp();
 
-        System.out.println(Arrays.toString(args));
+        String[] userArgs = {"-i", "-a", "out3.txt", "inn1.txt", "inn2.txt", "inn3.txt"};
 
-        String[] userArgs = {"-i", "-d", "out2.txt", "inn1.txt", "inn2.txt", "inn3.txt"};
-        anotherApp.chooseCommand(userArgs);
+        msa.chooseCommand(userArgs);
+
+
     }
-
 
     public String searchTypeCommand(String[] args) {
         /*
@@ -76,17 +79,12 @@ public class AnotherApp {
             if (commandList.get(0) == null) {
                 System.out.println("Вы не ввели параметр для типа данных. \nДопустимые: -i Integer, -s String");
             } else if (commandList.get(0).equals("-i")) {
-                fillList(fileList, commandList.get(1));
+                fillList(commandList.get(1), fileList);
             }
         }
     }
 
-    public void fillList(ArrayList<String> fileList, String sortCommand) throws IOException {
-        /*
-            1. Создаем список.
-            2. Создаем переменную, которая будет проверять ограничение используемой памяти.
-            3. Заполняем список и отправляем на запись в файл.
-        */
+    public void fillList(String sortCommand, ArrayList<String> fileList) throws IOException {
 
         ArrayList<String> strList = new ArrayList<>();
 
@@ -113,7 +111,8 @@ public class AnotherApp {
             */
             if (usedMemory >= maxUseMemory) {
                 System.out.printf("Used Memory is higher than %,.1f GB \n", maxUseMemory);
-                saveToFile(strList, sortCommand, fileList.get(0));
+                int[] array = mergeSort(strList, sortCommand);
+                saveToFile(array, fileList.get(0));
                 strList.clear();
                 System.out.println("successfully cleared List");
             }
@@ -126,7 +125,8 @@ public class AnotherApp {
 
             System.out.printf("%s successfully saved in List \n", fileList.get(i));
             if (i == fileList.size() - 1) {
-                saveToFile(strList, sortCommand, fileList.get(0));
+                int[] array = mergeSort(strList, sortCommand);
+                saveToFile(array, fileList.get(0));
                 strList.clear();
                 System.out.println("finished the program");
             }
@@ -135,81 +135,74 @@ public class AnotherApp {
     }
 
 
-    public ArrayList<Integer> sortTheList(ArrayList<String> strList, String command) {
-        /*
-            1. Получаем список и команду по сортировке.
-            2. Конвертируем и сортируем (стандартными библиотеками).
-        */
-        System.out.println("Converting String to Integer");
-        ArrayList<Integer> numList = new ArrayList<>();
-        for (int i = 0; i < strList.size(); i++) {
-            int temp = Integer.parseInt(strList.get(i));
-            numList.add(temp);
+    public static int[] mergeSort(ArrayList<String> strList, String sortCommand) {
+        int[] array = new int[strList.size()];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = Integer.parseInt(strList.get(i));
         }
-        if (command.equals("-a")) {
-            Collections.sort(numList);
+        if (sortCommand.equals("-a")) {
+            int[] tmp;
+            int[] currentSrc = array;
+            int[] currentDest = new int[array.length];
+
+            int size = 1;
+            while (size < array.length) {
+                for (int i = 0; i < array.length; i += 2 * size) {
+                    merge(currentSrc, i, currentSrc, i + size, currentDest, i, size);
+                }
+
+                tmp = currentSrc;
+                currentSrc = currentDest;
+                currentDest = tmp;
+
+                size = size * 2;
+
+            }
+            return currentSrc;
         } else {
-            numList.sort(Collections.reverseOrder());
+            Integer[] integerArray = IntStream.of(array).boxed().toArray(Integer[]::new);
+            Arrays.sort(integerArray, Collections.reverseOrder());
+            return Arrays.stream(integerArray).mapToInt(i -> i).toArray();
         }
-        return numList;
     }
 
-    public void saveToFile(ArrayList<String> strList, String sortCommand, String outFile) throws IOException {
-        /*
-            1. Создаем список для чисел.
-            2. Конвертируем из String в int и наоборот.
+    private static void merge(int[] src1, int src1Start, int[] src2, int src2Start, int[] dest,
+                              int destStart, int size) {
+        int index1 = src1Start;
+        int index2 = src2Start;
 
-            P.S. Если сразу делать запись strList, то по непонятным причинам идет запись в кодировке UTF-16 (иероглифы),
-            хотя везде стоит UTF-8.
-        */
+        int src1End = Math.min(src1Start + size, src1.length);
+        int src2End = Math.min(src2Start + size, src2.length);
 
-        ArrayList<Integer> numList = sortTheList(strList, sortCommand);
+        if (src1Start + size > src1.length) {
+            for (int i = src1Start; i < src1End; i++) {
+                dest[i] = src1[i];
+            }
+            return;
+        }
 
+        int iterationCount = src1End - src1Start + src2End - src2Start;
+
+        for (int i = destStart; i < destStart + iterationCount; i++) {
+            if (index1 < src1End && (index2 >= src2End || src1[index1] < src2[index2])) {
+                dest[i] = src1[index1];
+                index1++;
+            } else {
+                dest[i] = src2[index2];
+                index2++;
+            }
+        }
+    }
+
+    public void saveToFile(int[] array, String outFile) throws IOException {
         FileWriter writer = new FileWriter(outFile, true);
-        System.out.println("Saving out file");
-        for (int value : numList) {
-            writer.write(value + System.getProperty("line.separator"));
+        for (int i = 0; i < array.length; i++) {
+            writer.write(array[i] + System.getProperty("line.separator"));
         }
         writer.close();
-        numList.clear();
         System.out.println("successfully saved the out file");
+
     }
 
 
-    public void fillFiles() throws IOException {
-        /*
-            Метод создания и заполения файлов.
-        */
-        FileWriter writer = new FileWriter("inn4.txt", true);
-        Random r = new Random();
-        System.out.println("filling the file");
-        for (int i = 0; i < 10000000; i++) {
-            String s = Integer.toString(r.nextInt(100000));
-            writer.write(s);
-            writer.append("\n");
-        }
-        writer.close();
-    }
-
-    void showMemoryUsage() {
-        /*
-            Метод для проверки памяти.
-        */
-        MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
-
-        System.out.println(String.format("Initial memory: %.2f GB",
-                (double) memoryMXBean.getHeapMemoryUsage().getInit() / 1073741824));
-
-        System.out.println(String.format("Used heap memory: %.2f GB",
-
-                (double) memoryMXBean.getHeapMemoryUsage().getUsed() / 1073741824));
-
-        System.out.println(String.format("Max heap memory: %.2f GB",
-
-                (double) memoryMXBean.getHeapMemoryUsage().getMax() / 1073741824));
-
-        System.out.println(String.format("Committed memory: %.2f GB",
-
-                (double) memoryMXBean.getHeapMemoryUsage().getCommitted() / 1073741824));
-    }
 }

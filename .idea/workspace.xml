@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/AnotherApp.java" afterDir="false" />
+    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #4 (27.07.2023):&#10;reforged App&#10;Created AnotherApp">
+      <change afterPath="$PROJECT_DIR$/src/main/java/MergeSortApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AnotherApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AnotherApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690274834242</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Commit #4 (27.07.2023):&#10;reforged App&#10;Created AnotherApp">
+      <created>1690442467184</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1690442467184</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -136,6 +143,7 @@
     <MESSAGE value="Commit #1 (25.07.2023):&#10;created App for CFT" />
     <MESSAGE value="Commit #2 (25.07.2023):&#10;changed file_path" />
     <MESSAGE value="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method" />
+    <MESSAGE value="Commit #4 (27.07.2023):&#10;reforged App&#10;Created AnotherApp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #4 (27.07.2023):&#10;reforged App&#10;Created AnotherApp" />
   </component>
 </project>
