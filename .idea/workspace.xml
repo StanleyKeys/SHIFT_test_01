@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #2 (25.07.2023):&#10;changed file_path">
+    <list default="true" id="92dedf71-0472-457c-87ae-e6e47d289f7f" name="Changes" comment="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method">
+      <change afterPath="$PROJECT_DIR$/src/main/java/AnotherApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +19,23 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="SHIFT_test_01" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690270573495</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method">
+      <created>1690274834242</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1690274834242</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +135,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Commit #1 (25.07.2023):&#10;created App for CFT" />
     <MESSAGE value="Commit #2 (25.07.2023):&#10;changed file_path" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #2 (25.07.2023):&#10;changed file_path" />
+    <MESSAGE value="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #3 (25.07.2023):&#10;reforged fiil_sort_save method" />
   </component>
 </project>

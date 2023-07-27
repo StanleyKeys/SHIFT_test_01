@@ -11,19 +11,9 @@ public class App {
         App app = new App();
         System.out.println(Arrays.toString(args));
 
-        // String userArgument = app.userInput();
-
+        String[] userArgs = {"-i", "-a", "out.txt", "in1.txt", "in2.txt", "in3.txt"};
         app.chooseCommand(args);
 
-    }
-
-    public String userInput() {
-        /*
-            Метод ввода параметров пользователем.
-         */
-        System.out.println("Input your command: ");
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
     }
 
     public String searchTypeCommand(String[] args) {
